@@ -1,5 +1,12 @@
 #!/usr/bin/env bash
 
+LOCKFILE="/tmp/tmux_hot_reload.lock"
+
+exec 200>$LOCKFILE
+if ! flock -n 200; then
+    exit 0
+fi
+
 WATCHED_FILE="$HOME/.config/tmux/themes/noctalia.conf"
 TMUX_CONF="$HOME/.config/tmux/tmux.conf"
 
