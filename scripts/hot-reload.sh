@@ -18,6 +18,8 @@ while true; do
   
   if [ "$CURRENT_MTIME" -ne "$LAST_MTIME" ]; then
     tmux source-file "$TMUX_CONF"
+    # Ensure transparency is preserved after noctalia.conf overwrites it
+    tmux set -g status-style bg=default
     LAST_MTIME="$CURRENT_MTIME"
   fi
 done
