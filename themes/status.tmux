@@ -47,17 +47,19 @@ tmux set -g status-left \
 
 # Window styling
 
+WINDOW_ICON="#{?#{m/i:*code*,#W}, ,#{?#{m/i:*run*,#W}, ,#{?#{m/i:*log*,#W}, ,#{?#{m/i:*git*,#W}, ,#{?#{m/i:cc,#W}, ,#{?#{m/i:*competitive*,#W}, ,#{?#{m/i:*note*,#W}, ,#{?#{==:#{pane_current_command},ssh},󰣀 , }}}}}}}}"
+
 # Focused window
 tmux set -g window-status-current-format \
 "$RESET#[fg=${THEME[blue]},bg=${THEME[bblack]}] \
-#{?#{==:#{pane_current_command},ssh},󰣀 , }\
-#[fg=${THEME[foreground]},bold,nodim]#I:#W "
+${WINDOW_ICON}\
+#[fg=${THEME[foreground]},bold,nodim]#W "
 
 # Unfocused windows
 tmux set -g window-status-format \
 "$RESET#[fg=${THEME[foreground]}] \
-#{?#{==:#{pane_current_command},ssh},󰣀 , }\
-#I:#W "
+${WINDOW_ICON}\
+#W "
 
 tmux set -g window-status-separator ""
 
