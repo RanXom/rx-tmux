@@ -28,8 +28,14 @@ tmux set -g pane-border-status off
 tmux set -g status-style \
   "bg=default"
 
-# Ensure transparency stays even if noctalia.conf is sourced at the end of tmux.conf after slow plugins
-(sleep 2 && tmux set -g status-style "bg=default") &
+# Aggressively ensure transparency stays even if noctalia.conf is sourced late by TPM
+# Redirect output so tmux run-shell does not block/freeze on this background task!
+(
+  for i in {1..20}; do
+    tmux set -g status-style "bg=default"
+    sleep 0.5
+  done
+) >/dev/null 2>&1 &
 
 tmux set -g popup-border-style \
   "fg=$(get_option @noctalia_outline)"
@@ -47,17 +53,19 @@ tmux set -g status-left \
 
 # Window styling
 
+WINDOW_ICON="#{?#{m/i:*code*,#W}, ,#{?#{m/i:*run*,#W}, ,#{?#{m/i:*log*,#W}, ,#{?#{m/i:*git*,#W}, ,#{?#{m/i:cc,#W}, ,#{?#{m/i:*competitive*,#W}, ,#{?#{m/i:*note*,#W}, ,#{?#{==:#{pane_current_command},ssh},󰣀 , }}}}}}}}"
+
 # Focused window
 tmux set -g window-status-current-format \
 "$RESET#[fg=${THEME[blue]},bg=${THEME[bblack]}] \
-#{?#{==:#{pane_current_command},ssh},󰣀 , }\
-#[fg=${THEME[foreground]},bold,nodim]#I:#W "
+${WINDOW_ICON}\
+#[fg=${THEME[foreground]},bold,nodim]#W "
 
 # Unfocused windows
 tmux set -g window-status-format \
 "$RESET#[fg=${THEME[foreground]}] \
-#{?#{==:#{pane_current_command},ssh},󰣀 , }\
-#I:#W "
+${WINDOW_ICON}\
+#W "
 
 tmux set -g window-status-separator ""
 
