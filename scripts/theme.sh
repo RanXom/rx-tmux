@@ -4,7 +4,7 @@
 TMUX_VARS="$(tmux show-options -g 2>/dev/null)"
 
 get_option() {
-  echo "$TMUX_VARS" | awk -v key="$1" '$1 == key {print $2}'
+  echo "$TMUX_VARS" | awk -v key="$1" '$1 == key {gsub(/"/, "", $2); print $2}'
 }
 
 # Build a semantic palette from Noctalia's generated colors.
