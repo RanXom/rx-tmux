@@ -48,16 +48,16 @@ tmux set -g status-left \
 tmux set -g window-status-current-format \
 "$RESET#[fg=${THEME[blue]},bg=${THEME[bblack]}] \
 #{?#{==:#{pane_current_command},ssh},󰣀 , }\
-#[fg=${THEME[foreground]},bold,nodim]#I:#W"
+#[fg=${THEME[foreground]},bold,nodim]#I:#W "
 
 # Unfocused windows
 tmux set -g window-status-format \
 "$RESET#[fg=${THEME[foreground]}] \
 #{?#{==:#{pane_current_command},ssh},󰣀 , }\
-#I:#W"
+#I:#W "
 
 tmux set -g window-status-separator ""
 
 # Temporary right side
 tmux set -g status-right \
-"#[fg=${THEME[foreground]},bg=${THEME[bblack]}] %Y-%m-%d ❬ %H:%M "
+"#[fg=${THEME[foreground]},bg=${THEME[bblack]}]  #(whoami)@#H "
