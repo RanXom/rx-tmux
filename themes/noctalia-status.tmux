@@ -26,7 +26,7 @@ tmux set -g pane-active-border-style \
 tmux set -g pane-border-status off
 
 tmux set -g status-style \
-  "bg=${THEME[background]}"
+  "bg=default"
 
 tmux set -g popup-border-style \
   "fg=$(get_option @noctalia_outline)"
