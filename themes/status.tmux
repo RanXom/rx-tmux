@@ -28,6 +28,9 @@ tmux set -g pane-border-status off
 tmux set -g status-style \
   "bg=default"
 
+# Ensure transparency stays even if noctalia.conf is sourced at the end of tmux.conf after slow plugins
+(sleep 2 && tmux set -g status-style "bg=default") &
+
 tmux set -g popup-border-style \
   "fg=$(get_option @noctalia_outline)"
 
