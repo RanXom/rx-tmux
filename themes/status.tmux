@@ -53,7 +53,7 @@ tmux set -g status-left \
 
 # Window styling
 
-WINDOW_ICON="#{?#{m/i:*code*,#W}, ,#{?#{m/i:*run*,#W}, ,#{?#{m/i:*log*,#W}, ,#{?#{m/i:*git*,#W}, ,#{?#{m/i:cc,#W}, ,#{?#{m/i:*competitive*,#W}, ,#{?#{m/i:*note*,#W}, ,#{?#{==:#{pane_current_command},ssh},󰣀 , }}}}}}}}"
+WINDOW_ICON="#{?#{m/i:*code*,#W}, ,#{?#{m/i:*api*,#W},󰘦 ,#{?#{m/i:*run*,#W}, ,#{?#{m/i:*log*,#W}, ,#{?#{m/i:*git*,#W}, ,#{?#{m/i:cc,#W}, ,#{?#{m/i:*competitive*,#W}, ,#{?#{m/i:*note*,#W}, ,#{?#{==:#{pane_current_command},ssh},󰣀 , }}}}}}}}}"
 
 # Focused window
 tmux set -g window-status-current-format \
